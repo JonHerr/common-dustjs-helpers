@@ -27,7 +27,7 @@
             }
             return str;
         },
-        _render_if_else: function(b, chunk, context, bodies, params) {
+        _render_if_else: function(b, chunk, context, bodies) {
             if (b === true) {
                 if (bodies.block != null) {
                     chunk = chunk.render(bodies.block, context);
@@ -46,7 +46,7 @@
             }
             return chunk.capture(bodies.block, context, function(data, chunk) {
                 if (filter_type != null) {
-                    data = CommonDustjsHelpers.dust.filters[filter_type](data);
+                    data = dust.filters[filter_type](data);
                 }
                 chunk.write(data);
                 return chunk.end();
@@ -74,13 +74,13 @@
             }
             return chunk;
         },
-        upcase: function(chunk, context, bodies, params) {
+        upcase: function(chunk, context, bodies) {
             return chunk.capture(bodies.block, context, function(data, chunk) {
                 chunk.write(data.toUpperCase());
                 return chunk.end();
             });
         },
-        titlecase: function(chunk, context, bodies, params) {
+        titlecase: function(chunk, context, bodies) {
             return chunk.capture(bodies.block, context, function(data, chunk) {
                 chunk.write(data.replace(/([^\W_]+[^\s-]*) */g, (function(txt) {
                     return txt.charAt(0).toUpperCase() + txt.substr(1);
@@ -88,7 +88,7 @@
                 return chunk.end();
             });
         },
-        downcase: function(chunk, context, bodies, params) {
+        downcase: function(chunk, context, bodies) {
             return chunk.capture(bodies.block, context, function(data, chunk) {
                 chunk.write(data.toLowerCase());
                 return chunk.end();
@@ -211,10 +211,24 @@
             num = Math.abs(num);
 
             var prefix = isNegative ? "-$": "$";
-
-            return chunk.write(prefix + num.toFixed(2));
+            num = num.toFixed(2);
+            var actValue = num.split(".");
+            actValue[0] = actValue[0].match(/.{1,3}/g).join(",");
+            actValue = actValue.join(".");
+            return chunk.write(prefix + actValue);
         },
         total: function (chunk, context, bodies, params) {
+            var key = dust.helpers.tap(params.key, chunk, context);
+            var value = dust.helpers.tap(params.value, chunk, context);
+            key = parseFloat(key);
+            value = parseFloat(value);
+            if (isNaN(key) || isNaN(value)) {
+                return chunk.write('0');
+            }
+            var total = ((key * 100) * (value * 100)) / 100;
+            return chunk.write(total);
+        },
+        totalCurrency: function (chunk, context, bodies, params) {
             var key = dust.helpers.tap(params.key, chunk, context);
             var value = dust.helpers.tap(params.value, chunk, context);
             key = parseFloat(key);
@@ -223,22 +237,10 @@
                 return chunk.write('$0.00');
             }
             var total = (key * value).toFixed(2);
-            return chunk.write('$' + total);
-        },
-        shipCost: function (chunk, context, bodies, params) {
-            var key = dust.helpers.tap(params.key, chunk, context);
-            var value = dust.helpers.tap(params.value, chunk, context);
-            key = parseFloat(key);
-            value = parseFloat(value);
-            if (isNaN(key) || isNaN(value)) {
-                return chunk.write('$0.00');
-            }
-            var total = (key + value).toFixed(2);
-            if (total === "0.00") {
-                return chunk.write('FREE');
-            } else {
-                return chunk.write('$' + total);
-            }
+            var actValue = total.split(".");
+            actValue[0] = actValue[0].match(/.{1,3}/g).join(",");
+            actValue = actValue.join(".");
+            return chunk.write('$' + actValue);
         },
         formatEmail: function(chunk, context, bodies, params) {
             var email = dust.helpers.tap(params.value, chunk, context);

@@ -2,13 +2,13 @@
 
 ## About
 
-`common-dustjs-helpers` is an [npm](https://npmjs.org/) module that offers a small library of helper functions for the [Dust.js](http://akdubya.github.io/dustjs/) web-templating framework (and the [LinkedIn fork of Dust.js](https://github.com/linkedin/dustjs)).  This library is largely complementary to [LinkedIn's dustjs-helpers](https://github.com/linkedin/dustjs-helpers) library.
+`common-dustjs-linkedin-helpers` is an [npm](https://npmjs.org/) module that offers a small library of helper functions for the [Dust.js](http://akdubya.github.io/dustjs/) web-templating framework (and the [LinkedIn fork of Dust.js](https://github.com/linkedin/dustjs)).  This library is largely complementary to [LinkedIn's dustjs-helpers](https://github.com/linkedin/dustjs-helpers) library.
 
 ## Installing
 
 `common-dustjs-helpers` is packaged as an npm module under the name [common-dustjs-helpers](https://npmjs.org/package/common-dustjs-helpers).  To install the library, run:
 
-    npm install -g common-dustjs-helpers
+    npm install -g common-dustjs-linkedin-helpers
 
 (omit the `-g` flag to install the module in the local working directory rather than "globally") or add something like:
 
@@ -21,9 +21,7 @@ to the `dependencies` section of your `package.json` file.
 To register the common helper functions with your Dust.js instance, require the module and then invoke the `export_helpers_to` method.  For example:
 
 
-    var helpers = new require("common-dustjs-helpers").CommonDustjsHelpers();
-    var dust = require("dustjs"); // or "dustjs-linkedin"
-    helpers.export_helpers_to(dust);
+    var helpers = new require("common-dustjs-helpers")
 
 and then use the Dust.js instance (`dust`) as you normally would.
 
