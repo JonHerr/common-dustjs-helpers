@@ -1,9 +1,6 @@
 /**
  * Created by jon on 10/25/14.
  */
-/**
- * Created by jon on 10/25/14.
- */
 
 (function(dust, _) {
 
@@ -249,6 +246,31 @@
             }else {
                 return chunk.write(email);
             }
+        },
+        firstAndLast: function(chunk, context, bodies, params) {
+            var c, d, _ref;
+            if ((context != null ? (_ref = context.stack) != null ? _ref.index : void 0 : void 0) != null) {
+                c = context.stack.index === 0;
+                d = context.stack.index === (context.stack.of - 1);
+                return this._render_if_else_last(c, chunk, context, bodies, params);
+            }
+            return chunk;
+        },
+        render_if_else_last: function(f, l, chunk, context, bodies) {
+            if (f === true) {
+                if (bodies.block != null) {
+                    chunk = chunk.render(bodies.block, context);
+                }
+            } else if (b === true) {
+                if (bodies["last"] != null) {
+                    chunk = chunk.render(bodies["last"], context);
+                }
+            } else {
+                if (bodies["else"] != null) {
+                    chunk = chunk.render(bodies["else"], context);
+                }
+            }
+            return chunk;
         }
     };
 

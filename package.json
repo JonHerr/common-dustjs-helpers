@@ -12,7 +12,8 @@
   "main":         "lib/common-dustjs-helpers.js",
   "directories":  { "lib":"lib", "doc":"docs" },
   "devDependencies" : {
-    "dustjs-linkedin" : "latest"
+    "dustjs-linkedin" : "latest",
+    "nodeunit": "latest"
   },
   "dependencies": {
       "lodash": "latest",
