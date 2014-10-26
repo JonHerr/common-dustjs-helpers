@@ -6,7 +6,7 @@
 
 ## Installing
 
-`common-dustjs-helpers` is packaged as an npm module under the name [common-dustjs-helpers](https://npmjs.org/package/common-dustjs-helpers).  To install the library, run:
+`common-dustjs-linkedin-helpers` is packaged as an npm module under the name [common-dustjs-helpers](https://npmjs.org/package/common-dustjs-helpers).  To install the library, run:
 
     npm install -g common-dustjs-linkedin-helpers
 
