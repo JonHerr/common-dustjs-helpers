@@ -1,7 +1,7 @@
 *.html
+.idea
 docco
 lib-cov
-*.js
 node_modules
 module
 
