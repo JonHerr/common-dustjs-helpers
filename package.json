@@ -1,5 +1,5 @@
 {
-  "name":         "common-dustjs-helpers",
+  "name":         "common-dustjs-linkedin-helpers",
   "description":  "A small library of \"standard\" helper functions for the Dust.js web templating framework.",
   "version":      "0.1.1",
   "keywords":     [ "dust", "dust.js", "linkedin", "helper", "web", "template" ],
