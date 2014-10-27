@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div class="repeat">
+    <p>
+    {@repeat times="3"}
+        hey
+    {/repeat}
+    goodbye.
+    </p>
+</div>
+<div class="filter">
+    <p>
+    {@filter type="u"}
+        {name}
+        {value}
+    {/filter}
+    </p>
+</div>
+<div class="titlecase"></div>
+<div class="upcase"></div>
+<div class="downcase"></div>
+<div class="first"></div>
+<div class="last"></div>
+<div class="odd"></div>
+<div class="even"></div>
+<div class="count"></div>
+<div class="unless"></div>
+<div class="formatCurrency">
+    {@formatCurrency value="300000"}{/formatCurrency}
+</div>
+<div class="totalCurrency"></div>
+<div class="total">
+
+</div>
+<div class="formatEmail">
+    <p>
+    {@formatEmail value="{email}"/}
+    </p>
+</div>
+<div class="firstAndLast">
+    {#array}
+        {@firstAndLast}
+            <p>this is the first iteration.</p>
+        {:else}
+            <p>this is the {@math key="{$idx}" method="add" operand="1"/} iteration.</p>
+        {:last}
+            <p>this was the last iteration.</p>
+        {/firstAndLast}
+    {/array}
+</div>
+</body>
+</html>

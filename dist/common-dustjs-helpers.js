@@ -252,16 +252,16 @@
             if ((context != null ? (_ref = context.stack) != null ? _ref.index : void 0 : void 0) != null) {
                 c = context.stack.index === 0;
                 d = context.stack.index === (context.stack.of - 1);
-                return this._render_if_else_last(c, chunk, context, bodies, params);
+                return this._render_if_else_last(c, d, chunk, context, bodies, params);
             }
             return chunk;
         },
-        render_if_else_last: function(f, l, chunk, context, bodies) {
+        _render_if_else_last: function(f, l, chunk, context, bodies, params) {
             if (f === true) {
                 if (bodies.block != null) {
                     chunk = chunk.render(bodies.block, context);
                 }
-            } else if (b === true) {
+            } else if (l === true) {
                 if (bodies["last"] != null) {
                     chunk = chunk.render(bodies["last"], context);
                 }

@@ -1,4 +1,3 @@
-*.html
 .idea
 docco
 lib-cov
